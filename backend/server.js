@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser'
 import otpRoute from './routers/otpRoute.js'
 import { cloudinaryConfig , uploadImage } from './config/cloudinaryConfig.js'
 import dotenv from 'dotenv'
+import helmet from 'helmet'
 
 dotenv.config()
 
@@ -27,6 +28,7 @@ cloudinaryConfig()
 app.use(express.json({ limit: '10mb' }))
 app.use(express.urlencoded({ limit: '10mb', extended: true }))
 app.use(cookieParser())
+app.use(helmet())
 // note: cors already applied above with credentials support
 
 // User Router

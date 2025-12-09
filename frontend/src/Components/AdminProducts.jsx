@@ -103,7 +103,7 @@ export default function AdminProducts() {
             <table className="list-table">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>S:No</th>
                   <th>Image</th>
                   <th>Name</th>
                   <th>Price</th>
@@ -112,9 +112,9 @@ export default function AdminProducts() {
                 </tr>
               </thead>
               <tbody>
-                {products.map((p) => (
+                {products.map((p,index) => (
                   <tr key={p.id}>
-                    <td>{p.id}</td>
+                    <td>{index+1}</td>
                     <td>
                       {editing === p.id ? (
                         formData.imagePreview ? (

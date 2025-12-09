@@ -46,6 +46,7 @@ export default function AdminOrders() {
             <table className="list-table">
               <thead>
                 <tr>
+                  <th>S:No</th>
                   <th>Order ID</th>
                   <th>User ID</th>
                   <th>Product ID</th>
@@ -56,8 +57,9 @@ export default function AdminOrders() {
                 </tr>
               </thead>
               <tbody>
-                {orders.map((o) => (
+                {orders.map((o,index) => (
                   <tr key={o.id || o.order_id}>
+                    <td>{index+1}</td>
                     <td>{o.id || o.order_id}</td>
                     <td>{o.user_id}</td>
                     <td>{o.product_id}</td>

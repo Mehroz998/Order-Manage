@@ -97,6 +97,7 @@ export default function AdminUsers() {
             <table className="list-table">
               <thead>
                 <tr>
+                  <th>S:No</th>
                   <th>ID</th>
                   <th>Name</th>
                   <th>Email</th>
@@ -106,8 +107,9 @@ export default function AdminUsers() {
                 </tr>
               </thead>
               <tbody>
-                {users.map((u) => (
+                {users.map((u,index) => (
                   <tr key={u.id}>
+                    <td>{index+1}</td>
                     <td>{u.id}</td>
                     {editing === u.id ? (
                       <>
