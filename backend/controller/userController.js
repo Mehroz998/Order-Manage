@@ -2,7 +2,7 @@ import pool from '../database/db.js'
 import bcrypt from 'bcrypt'
 import AppError from '../utils/appError.js';
 import { generateAccessToken, generateRefreshToken, isRefreshTokenValid, revokeAllUserTokens, revokeRefreshToken, storeRefreshToken, verifyRefreshToken } from '../utils/jwt.js';
-
+import { sanitizeInput } from '../utils/sanitizeInput.js';
 
 function validateEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -14,7 +14,7 @@ export const registerUser = async (req , res)=>{
       //start time
     const startTime =  Date.now()
     console.log("Redister User start Time",startTime)
-    const {name, email, password, confirmPassword, role} = req.body
+    const {name, email, password, confirmPassword, role} = sanitizeInput(req.body)
     try{
         //Check All fields
         if(!name || !email || !password || !confirmPassword){
@@ -83,7 +83,7 @@ export const loginUser = async (req , res)=>{
         //start time
     const startTime =  Date.now()
     console.log("Login User start Time",startTime)
-    const {email, password} = req.body
+    const {email, password} = sanitizeInput(req.body)
     try{
         // Check both fields
         if(!email || !password){
@@ -300,7 +300,7 @@ export const forgetPassword = async (req, res)=>{
       //start time
     const startTime =  Date.now()
     console.log("Forget Password start Time",startTime)
-    const {email, password, confirmPassword} = req.body
+    const {email, password, confirmPassword} = sanitizeInput(req.body)
     try{
         // Check all fields
         if(!email || !password || !confirmPassword){
@@ -350,7 +350,7 @@ export const updateUser = async (req, res) => {
     const startTime =  Date.now()
     console.log("Update User start Time",startTime)
     const id = req.params.id;
-    const { name, email, role } = req.body;
+    const { name, email, role } = sanitizeInput(req.body);
 
     try {
         if (!id) {
